@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alke Wallet - Menú Principal</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body class="bg light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="img/logo.png" alt="Logo Alke Wallet" width="30" height="24" class="d-inline-block align-text-top">
+                    Alke Wallet
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="barra-nav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main class="container mt-5">
+            <h1 class="mb-4">Hola, 
+                <span id="username">Usuario</span>
+            </h1>
+            <div class="card text-white bg-success mb-4 shadow">
+                <div class="card-header">Saldo Disponible</div>
+                <div class="card-body">
+                    <h2 class="card-title display-4" id="account-balance">$ 0</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-3 shadow-sm hover-effect">
+                        <div class="card-body">
+                            <h5 class="card-title">Depositar</h5>
+                            <p class="card-text">Añade fondos a tu cuenta.</p>
+                            <a href="deposit.html" class="btn btn-primary w-100">Ir a Depositar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-3 shadow-sm hover-effect">
+                        <div class="card-body">
+                            <h5 class="card-title">Enviar Dinero</h5>
+                            <p class="card-text">Realiza transferencias a contactos.</p>
+                            <a href="sendmoney.html" class="btn btn-primary w-100">Realizar Envío</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center p-3 shadow-sm hover-effect">
+                        <div class="card-body">
+                            <h5 class="card-title">Últimos Movimientos</h5>
+                            <p class="card-text">Revisa tu historial de transacciones.</p>
+                            <a href="transactions.html" class="btn btn-primary w-100">Ver Historial</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/logica.js"></script>
+    </body>
+</html>
