@@ -1,16 +1,11 @@
 $(document).ready(function(){
-    let saldo = localStorage.getItem('saldoWallet');
+    const bd = obtenerDatos();
+    const usuario = bd.usuario;
 
-    if (saldo === null) {
-        saldo = 50000;
-        localStorage.setItem('saldoWallet', saldo);
-    }
+    $('#username').text(usuario.nombre);
 
-    const saldoPantalla = $('#account-balance');
-    if (saldoPantalla.length > 0) {
-        saldoPantalla.text('$' + parseInt(saldo).toLocaleString('es-CL'));
-    }
+    $('#user-account').text(usuario.numeroCuenta);
 
-    const usuario = "Joaquina";
-    $('#username').text(usuario);
+    const saldoFormateado = '$' + parseInt(usuario.saldo).toLocaleString('es-CL');
+    $('#account-balance').text(saldoFormateado);
 });

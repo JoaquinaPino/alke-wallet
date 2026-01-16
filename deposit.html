@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="bg-light">
-        <nav class="navbar navbar-dark bg-primary mb-4">
+        <nav class="navbar navbar-dark mb-4">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Realizar Depósito</span>
                 <a href="menu.html" class="btn btn-outline-light btn-sm">Volver al Menú</a>
@@ -16,30 +16,33 @@
         </nav>
         <main class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card shadow">
-                        <div class="card-body p-4">
-                            <h2 class="h4 text-success">Añadir Fondos</h2>
-                            <p class="text-muted">Ingresa el monto a depositar en tu cuenta</p>
-                        </div>
-                        <form id="deposit-form">
-                            <div class="mb-4">
-                                <label for="deposit-amount" class="form-label">Monto a depositar</label>
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-text">$</span>
-                                    <input type="number" class="form-control" id="deposit-amount" placeholder="0" min="1" required>
+                <div class="col-md-12">
+                    <div class="card shadow card-form-width">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-5">
+                                <h2 class="h4 text-purple fw-bold">Añadir Fondos</h2>
+                                <p class="text-muted">Ingresa el monto a depositar en tu cuenta</p>
+                            </div>
+                            <form id="deposit-form">
+                                <div class="mb-5">
+                                    <label for="deposit-amount" class="form-label fw-bold text-secondary mb-3">Monto a depositar</label>
+                                    <div class="input-group input-group-lg shadow-sm rounded overflow-hidden">
+                                        <span class="input-group-text bg-light text-purple border-0 fw-bold px-4">$</span>
+                                        <input type="number" class="form-control bg-light border-0 py-3" id="deposit-amount" placeholder="0" min="1" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-success btn-lg">Realizar Depósito</button>
-                            </div>
-                        </form>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-lg shadow py-3 fs-5">Realizar Depósito</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/baseDeDatos.js"></script>
         <script src="js/deposit.js"></script>
     </body>
 </html>

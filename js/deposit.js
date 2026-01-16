@@ -11,15 +11,22 @@ $(document).ready(function(){
             return;
         }
 
-        let saldoActual = localStorage.getItem('saldoWallet');
-        if (!saldoActual) saldoActual = 0;
-
-        const nuevoSaldo = parseInt(saldoActual) + monto;
+        const bd = obtenerDatos();
         
-        localStorage.setItem('saldoWallet', nuevoSaldo);
+        bd.usuario.saldo = parseInt(bd.usuario.saldo) + monto;
+
+        const nuevaTransaccion = {
+            id: bd.transacciones.length + 1,
+            fecha: new Date().toLocaleDateString(),
+            monto: monto,
+            tipo: "ingreso",
+            descripcion: "Depósito en cuenta"
+        };
+        bd.transacciones.push(nuevaTransaccion);
+
+        guardarDatos(bd);
 
         alert(`¡Depósito exitoso! Has añadido $${monto} a tu cuenta.`);
         window.location.href = 'menu.html';
-
     });
 });
