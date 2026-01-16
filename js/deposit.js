@@ -11,11 +11,11 @@ $(document).ready(function(){
         header.removeClass('bg-success bg-danger bg-primary');
         
         if (esExito) {
-            header.addClass('bg-success'); 
-            icono.html('🎉'); 
+            header.addClass('bg-success');
+            icono.html('<i class="bi bi-check-circle-fill text-success"></i>'); 
         } else {
             header.addClass('bg-danger');
-            icono.html('⚠️');
+            icono.html('<i class="bi bi-exclamation-circle-fill text-danger"></i>'); 
         }
 
         const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));

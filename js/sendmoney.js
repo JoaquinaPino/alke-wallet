@@ -48,7 +48,7 @@ $(document).ready(function(){
         inputSeleccionado.val(nombre);
     });
 
-    function mostrarFeedback(titulo, mensaje, esExito) {
+    function mostrarFeedback(titulo, mensaje, esExito, redireccionar) {
         $('#feedbackTitle').text(titulo);
         $('#feedbackMessage').text(mensaje);
 
@@ -59,20 +59,22 @@ $(document).ready(function(){
         
         if (esExito) {
             header.addClass('bg-success');
-            icono.html('🚀');
+            icono.html('<i class="bi bi-check-circle-fill text-success"></i>');
         } else {
             header.addClass('bg-danger');
-            icono.html('✋');
+            icono.html('<i class="bi bi-exclamation-triangle-fill text-danger"></i>');
         }
 
-        const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
-        modal.show();
+        $('#feedbackModal').off('hidden.bs.modal');
 
-        if (esExito) {
+        if (esExito && redireccionar) {
             $('#feedbackModal').on('hidden.bs.modal', function () {
                 window.location.href = 'menu.html';
             });
         }
+
+        const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+        modal.show();
     }
 
     $('#form-nuevo-contacto').on('submit', function(e) {
@@ -92,7 +94,7 @@ $(document).ready(function(){
         $('#modalNuevoContacto').modal('hide');
         $('#form-nuevo-contacto')[0].reset();
 
-        alert("Contacto agregado exitosamente."); 
+        mostrarFeedback("¡Contacto Guardado!", "El nuevo destinatario ha sido agregado a tu lista.", true, false);
     });
 
     $('#sendmoney-form').on('submit', function(e){
@@ -102,11 +104,11 @@ $(document).ready(function(){
         const monto = parseInt($('#amount-input').val());
 
         if (!contactoNombre) {
-            mostrarFeedback("Falta Información", "Por favor haz click en un contacto de la lista para seleccionarlo.", false);
+            mostrarFeedback("Falta Información", "Por favor haz click en un contacto de la lista para seleccionarlo.", false, false);
             return;
         }
         if (isNaN(monto) || monto <= 0) {
-            mostrarFeedback("Monto Inválido", "Por favor ingresa un monto válido mayor a 0.", false);
+            mostrarFeedback("Monto Inválido", "Por favor ingresa un monto válido mayor a 0.", false, false);
             return;
         }
 
@@ -114,7 +116,7 @@ $(document).ready(function(){
         const saldoActual = bd.usuario.saldo;
 
         if (monto > saldoActual) {
-            mostrarFeedback("Fondos Insuficientes", "No tienes suficiente saldo para esta operación.", false);
+            mostrarFeedback("Fondos Insuficientes", "No tienes suficiente saldo para esta operación.", false, false);
             return;
         }
 
@@ -131,6 +133,6 @@ $(document).ready(function(){
 
         guardarDatos(bd);
 
-        mostrarFeedback("¡Envío Exitoso!", `Has transferido $${monto.toLocaleString('es-CL')} a ${contactoNombre}.`, true);
+        mostrarFeedback("¡Envío Exitoso!", `Has transferido $${monto.toLocaleString('es-CL')} a ${contactoNombre}.`, true, true);
     });
 });
