@@ -1,5 +1,33 @@
 $(document).ready(function(){
 
+    function mostrarFeedback(titulo, mensaje, esExito) {
+
+        $('#feedbackTitle').text(titulo);
+        $('#feedbackMessage').text(mensaje);
+
+        const header = $('#feedbackHeader');
+        const icono = $('#feedbackIcon');
+
+        header.removeClass('bg-success bg-danger bg-primary');
+        
+        if (esExito) {
+            header.addClass('bg-success'); 
+            icono.html('🎉'); 
+        } else {
+            header.addClass('bg-danger');
+            icono.html('⚠️');
+        }
+
+        const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+        modal.show();
+
+        if (esExito) {
+            $('#feedbackModal').on('hidden.bs.modal', function () {
+                window.location.href = 'menu.html';
+            });
+        }
+    }
+
     $('#deposit-form').on('submit', function(e){
         e.preventDefault();
 
@@ -7,7 +35,7 @@ $(document).ready(function(){
         const monto = parseInt(montoIngresado);
 
         if(isNaN(monto) || monto <= 0 ) {
-            alert('Por favor ingrese un monto válido mayor a $0.');
+            mostrarFeedback("Error", "Por favor ingresa un monto válido mayor a $0.", false);
             return;
         }
 
@@ -16,17 +44,16 @@ $(document).ready(function(){
         bd.usuario.saldo = parseInt(bd.usuario.saldo) + monto;
 
         const nuevaTransaccion = {
-            id: bd.transacciones.length + 1,
+            id: Date.now(),
             fecha: new Date().toLocaleDateString(),
             monto: monto,
             tipo: "ingreso",
             descripcion: "Depósito en cuenta"
         };
-        bd.transacciones.push(nuevaTransaccion);
+        bd.transacciones.unshift(nuevaTransaccion);
 
         guardarDatos(bd);
 
-        alert(`¡Depósito exitoso! Has añadido $${monto} a tu cuenta.`);
-        window.location.href = 'menu.html';
+        mostrarFeedback("¡Depósito Exitoso!", `Has añadido $${monto.toLocaleString('es-CL')} a tu cuenta.`, true);
     });
 });

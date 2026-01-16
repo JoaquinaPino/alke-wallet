@@ -27,7 +27,7 @@ const bdInicial = {
             id: 3, 
             nombre: "Carlos Ruiz", 
             numeroCuenta: "555-4444-11", 
-            banco: "Santander", 
+            banco: "Banco Santander", 
             rut: "15.678.901-5", 
             tipo: "Cuenta Vista" 
         }

@@ -7,7 +7,6 @@ $(document).ready(function(){
 
     function renderizarContactos(filtro = "") {
         listaContactos.empty(); 
-
         const contactosFiltrados = bd.contactos.filter(c => 
             c.nombre.toLowerCase().includes(filtro.toLowerCase())
         );
@@ -39,7 +38,6 @@ $(document).ready(function(){
     });
 
     listaContactos.on('click', '.contact-item', function() {
-
         $('.contact-item').removeClass('active bg-primary text-white');
         $('.contact-item').find('small').removeClass('text-white-50').addClass('text-muted');
         
@@ -50,9 +48,35 @@ $(document).ready(function(){
         inputSeleccionado.val(nombre);
     });
 
+    function mostrarFeedback(titulo, mensaje, esExito) {
+        $('#feedbackTitle').text(titulo);
+        $('#feedbackMessage').text(mensaje);
+
+        const header = $('#feedbackHeader');
+        const icono = $('#feedbackIcon');
+
+        header.removeClass('bg-success bg-danger bg-primary');
+        
+        if (esExito) {
+            header.addClass('bg-success');
+            icono.html('🚀');
+        } else {
+            header.addClass('bg-danger');
+            icono.html('✋');
+        }
+
+        const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+        modal.show();
+
+        if (esExito) {
+            $('#feedbackModal').on('hidden.bs.modal', function () {
+                window.location.href = 'menu.html';
+            });
+        }
+    }
+
     $('#form-nuevo-contacto').on('submit', function(e) {
         e.preventDefault();
-
         const nuevoContacto = {
             id: Date.now(),
             nombre: $('#nuevo-nombre').val(),
@@ -61,15 +85,14 @@ $(document).ready(function(){
             tipo: $('#nuevo-tipo').val(),
             numeroCuenta: $('#nuevo-num-cuenta').val()
         };
-
         bd.contactos.push(nuevoContacto);
         guardarDatos(bd);
-
         renderizarContactos();
         
         $('#modalNuevoContacto').modal('hide');
         $('#form-nuevo-contacto')[0].reset();
-        alert("Contacto agregado exitosamente.");
+
+        alert("Contacto agregado exitosamente."); 
     });
 
     $('#sendmoney-form').on('submit', function(e){
@@ -79,11 +102,11 @@ $(document).ready(function(){
         const monto = parseInt($('#amount-input').val());
 
         if (!contactoNombre) {
-            alert('Por favor haz click en un contacto de la lista para seleccionarlo.');
+            mostrarFeedback("Falta Información", "Por favor haz click en un contacto de la lista para seleccionarlo.", false);
             return;
         }
         if (isNaN(monto) || monto <= 0) {
-            alert('Por favor ingresa un monto válido.');
+            mostrarFeedback("Monto Inválido", "Por favor ingresa un monto válido mayor a 0.", false);
             return;
         }
 
@@ -91,7 +114,7 @@ $(document).ready(function(){
         const saldoActual = bd.usuario.saldo;
 
         if (monto > saldoActual) {
-            alert('Fondos insuficientes.');
+            mostrarFeedback("Fondos Insuficientes", "No tienes suficiente saldo para esta operación.", false);
             return;
         }
 
@@ -108,7 +131,6 @@ $(document).ready(function(){
 
         guardarDatos(bd);
 
-        alert(`Transferencia exitosa de $${monto} a ${contactoNombre}.`);
-        window.location.href = 'menu.html';
+        mostrarFeedback("¡Envío Exitoso!", `Has transferido $${monto.toLocaleString('es-CL')} a ${contactoNombre}.`, true);
     });
 });
