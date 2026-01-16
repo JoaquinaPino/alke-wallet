@@ -107,3 +107,11 @@ body {
 .input-group-text {
     border-right: none;
 }
+
+.text-purple-gradient {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}

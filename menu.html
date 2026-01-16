@@ -5,30 +5,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Alke Wallet - Menú Principal</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="bg-light">
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-dark mb-4 border-bottom border-white border-opacity-10">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="img/logo.png" alt="Logo Alke Wallet" width="30" height="24" class="d-inline-block align-text-top">
-                    Alke Wallet
+                <a class="navbar-brand d-flex align-items-center gap-2" href="menu.html">
+                    <img src="img/logo.png" alt="Logo" width="55" height="55" class="d-inline-block align-text-top shadow-sm me-2" style="background: white; border-radius: 12px; padding: 0px;">
+                    <span class="fw-bold">Alke Wallet</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="barra-nav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </nav>
+        <div class="offcanvas offcanvas-end text-white" tabindex="-1" id="sidebarMenu" style="background: linear-gradient(180deg, #4A00E0 0%, #8E2DE2 100%);">
+            <div class="offcanvas-header p-4 border-bottom border-secondary border-opacity-25">
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-gradient p-3 rounded-circle me-3 d-flex align-items-center justify-content-center shadow" style="width: 60px; height: 60px;">
+                        <i class="bi bi-person-fill fs-2 text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-1 fw-bold" id="nombre-sidebar">Usuario</h5>
+                        <a href="#" class="text-primary text-decoration-none small fw-bold">Ver perfil <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i>
+                        </a>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body p-0 py-3">
+                <div class="list-group list-group-flush bg-transparent">
+                    <a href="menu.html" class="list-group-item list-group-item-action bg-transparent text-white border-0 py-3 px-4 fs-5 d-flex align-items-center hover-effect-light">
+                        <i class="bi bi-house-door-fill me-3 fs-4 text-white"></i> Inicio
+                    </a>
+                    <a href="deposit.html" class="list-group-item list-group-item-action bg-transparent text-white border-0 py-3 px-4 fs-5 d-flex align-items-center hover-effect-light">
+                        <i class="bi bi-piggy-bank-fill me-3 fs-4 text-white"></i> Depositar
+                    </a>
+                    <a href="sendmoney.html" class="list-group-item list-group-item-action bg-transparent text-white border-0 py-3 px-4 fs-5 d-flex align-items-center hover-effect-light">
+                        <i class="bi bi-send-fill me-3 fs-4 text-white"></i> Transferir
+                    </a>
+                    <a href="transactions.html" class="list-group-item list-group-item-action bg-transparent text-white border-0 py-3 px-4 fs-5 d-flex align-items-center hover-effect-light">
+                        <i class="bi bi-clock-history me-3 fs-4 text-white"></i> Historial
+                    </a>
+                    <hr class="my-3 mx-4 border-secondary border-opacity-25">
+                    <div class="px-4 pt-2">
+                        <a href="index.html" class="btn btn-outline-light w-100 py-3 rounded-pill fw-bold d-flex align-items-center justify-content-center shadow-sm" style="border-width: 2px;">
+                            <i class="bi bi-box-arrow-right me-2 fs-5"></i> Cerrar Sesión
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <main class="container mt-5">
             <h1 class="mb-4 text-white">Hola, 
                 <span id="username" class="fw-bold">Usuario</span> 👋
@@ -44,7 +72,9 @@
                 <div class="col-md-4">
                     <div class="card h-100 text-center p-3 shadow-sm hover-effect">
                         <div class="card-body">
-                            <div class="fs-1 mb-2">💰</div>
+                            <div class="mb-3">
+                                <i class="bi bi-piggy-bank-fill fs-1 text-purple-gradient"></i>
+                            </div>
                             <h5 class="card-title text-primary">Depositar</h5>
                             <p class="card-text text-muted small">Añade fondos a tu cuenta.</p>
                             <a href="deposit.html" class="btn btn-primary w-100">Ir a Depositar</a>
@@ -54,7 +84,9 @@
                 <div class="col-md-4">
                     <div class="card h-100 text-center p-3 shadow-sm hover-effect">
                         <div class="card-body">
-                            <div class="fs-1 mb-2">💸</div>
+                            <div class="mb-3">
+                                <i class="bi bi-send-fill fs-1 text-purple-gradient"></i>
+                            </div>
                             <h5 class="card-title text-primary">Enviar Dinero</h5>
                             <p class="card-text text-muted small">Realiza transferencias a contactos.</p>
                             <a href="sendmoney.html" class="btn btn-primary w-100">Realizar Envío</a>
@@ -64,13 +96,19 @@
                 <div class="col-md-4">
                     <div class="card h-100 text-center p-3 shadow-sm hover-effect">
                         <div class="card-body">
-                            <div class="fs-1 mb-2">📊</div>
+                            <div class="mb-3">
+                                <i class="bi bi-clock-history fs-1 text-purple-gradient"></i>
+                            </div>
                             <h5 class="card-title text-primary">Movimientos</h5>
                             <p class="card-text">Revisa tu historial de transacciones.</p>
                             <a href="transactions.html" class="btn btn-primary w-100">Ver Historial</a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="text-center mt-5 mb-4">
+                <p class="text-white-50 small mb-2">¿Terminaste por hoy?</p>
+                <a href="index.html" class="btn btn-outline-light px-4 rounded-pill opacity-75 hover-effect"> Cerrar Sesión<i class="bi bi-box-arrow-right ms-2"></i></a>
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

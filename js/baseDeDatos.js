@@ -63,3 +63,11 @@ function guardarDatos(datos) {
     localStorage.setItem('alkeWalletBD', JSON.stringify(datos));
     localStorage.setItem('saldoWallet', datos.usuario.saldo);
 }
+
+$(document).ready(function() {
+
+    if ($('#nombre-sidebar').length > 0) {
+        const datos = obtenerDatos(); 
+        $('#nombre-sidebar').text(datos.usuario.nombre);
+    }
+});
