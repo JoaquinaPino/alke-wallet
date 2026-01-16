@@ -89,3 +89,21 @@ body {
     border-radius: 50%;
     pointer-events: none;
 }
+
+#lista-contactos::-webkit-scrollbar {
+    width: 8px;
+}
+#lista-contactos::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+#lista-contactos::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 4px;
+}
+#lista-contactos::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.input-group-text {
+    border-right: none;
+}
